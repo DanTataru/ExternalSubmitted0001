@@ -1,0 +1,11 @@
+C:\TestProject\UiPath Publishment\BalaReva.Excel\obj\Release\BalaReva.Excel.csprojResolveAssemblyReference.cache
+C:\TestProject\UiPath Publishment\BalaReva.Excel\obj\Release\Interop.ADODB.dll
+C:\TestProject\UiPath Publishment\BalaReva.Excel\obj\Release\BalaReva.Excel.csproj.ResolveComReference.cache
+C:\TestProject\UiPath Publishment\BalaReva.Excel\bin\Release\BalaReva.Excel.dll
+C:\TestProject\UiPath Publishment\BalaReva.Excel\bin\Release\BalaReva.Excel.pdb
+C:\TestProject\UiPath Publishment\BalaReva.Excel\bin\Release\BalaReva.Excel.Design.dll
+C:\TestProject\UiPath Publishment\BalaReva.Excel\bin\Release\BalaReva.Excel.Design.pdb
+C:\TestProject\UiPath Publishment\BalaReva.Excel\obj\Release\BalaReva.Excel.dll
+C:\TestProject\UiPath Publishment\BalaReva.Excel\obj\Release\BalaReva.Excel.pdb
+C:\TestProject\UiPath Publishment\BalaReva.Excel\bin\Release\BalaReva.Utilities.dll
+C:\TestProject\UiPath Publishment\BalaReva.Excel\bin\Release\BalaReva.Utilities.pdb

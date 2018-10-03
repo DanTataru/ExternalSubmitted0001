@@ -1,0 +1,449 @@
+﻿<sap:ActivityDesigner x:Class="DatatableActivities.Designers.FilterDesigner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sap="clr-namespace:System.Activities.Presentation;assembly=System.Activities.Presentation"
+    xmlns:sapv="clr-namespace:System.Activities.Presentation.View;assembly=System.Activities.Presentation"
+    xmlns:converters="clr-namespace:System.Activities.Presentation.Converters;assembly=System.Activities.Presentation"
+    xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib"
+    xmlns:system="clr-namespace:System;assembly=mscorlib" Loaded="RemoveDuplicatesDesigner_OnLoaded">
+    <sap:ActivityDesigner.Resources>
+        <converters:ArgumentToExpressionConverter x:Key="ArgConv" />
+        <collections:Hashtable x:Key="opList">
+            <system:String x:Key="Equals">1</system:String>
+            <system:String x:Key="Does Not Equal">2</system:String>
+            <system:String x:Key="Is Greater Than">3</system:String>
+            <system:String x:Key="Is Greater Than Or Equal To">4</system:String>
+            <system:String x:Key="Is Less Than">5</system:String>
+            <system:String x:Key="Is Less Than Or Equal To">6</system:String>
+            <system:String x:Key="Begins With">7</system:String>
+            <system:String x:Key="Does Not Begin With">8</system:String>
+            <system:String x:Key="Ends With">9</system:String>
+            <system:String x:Key="Does Not End With">10</system:String>
+            <system:String x:Key="Contains">11</system:String>
+            <system:String x:Key="Does Not Contain">12</system:String>
+        </collections:Hashtable>
+        <Style TargetType="sapv:ExpressionTextBox">
+            <Setter Property="Height" Value="25" />
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="HintText" Value="Mention Header Name"/>
+            <Setter Property="ExpressionType" Value="system:String"/>
+            <Setter Property="OwnerActivity" Value="{Binding ModelItem}"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="sapv:ExpressionTextBox.MaxLines" Value="1"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+    </sap:ActivityDesigner.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="AUTO"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="AUTO"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Header Name" Width="100" FontWeight="Bold"/>
+            <TextBlock Text="Operators" Width="100" FontWeight="Bold"/>
+            <TextBlock Text="Values to filter" Width="250" FontWeight="Bold"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <ScrollViewer Height="100" >
+                <StackPanel x:Name="pnlBoxes" Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String"
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression0, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator0}"/>
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression0, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression1, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator1}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression1, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression2, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator2}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression2, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="3">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression3, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator3}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression3, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="4">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression4, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator4}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression4, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="5">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression5, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator5}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression5, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="6">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression6, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator6}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression6, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="7">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression7, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator7}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression7, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="8">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression8, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator8}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression8, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="9">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression9, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator9}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression9, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="10">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression10, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator10}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression10, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="11">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression11, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator11}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression11, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="12">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression12, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator12}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression12, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="13">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression13, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator13}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression13, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="14">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression14, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator14}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression14, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="15">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression15, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator15}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression15, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="16">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression16, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator16}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression16, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="17">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression17, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator17}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression17, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="18">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression18, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator18}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression18, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="19">
+                        <sapv:ExpressionTextBox 
+                            ExpressionType="system:String" 
+                            Width="100"
+                            HintText="Ex. &quot;Region&quot;"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.HeaderExpression19, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                        <ComboBox 
+                            Width="100"
+                            DisplayMemberPath="Key"
+                            SelectedValuePath="Value"
+                            ItemsSource="{StaticResource opList}"
+                            SelectedValue="{Binding ModelItem.FilterOperator19}"/>
+                        <sapv:ExpressionTextBox ExpressionType="system:Array" 
+                            Width="250"
+                            HintText="{}Ex. {&quot;Asia&quot;, Europe}"
+                            OwnerActivity="{Binding ModelItem}"
+                            Expression="{Binding ModelItem.ValueExpression19, Mode=TwoWay, Converter={StaticResource ArgConv}, ConverterParameter=In}" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+        <StackPanel Grid.Row="2"  Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Remove" Click="RemoveCick" Margin="2"></Button>
+            <Button Content="Add" Click="AddClick" Margin="2"></Button>
+        </StackPanel>
+    </Grid>
+</sap:ActivityDesigner>
+

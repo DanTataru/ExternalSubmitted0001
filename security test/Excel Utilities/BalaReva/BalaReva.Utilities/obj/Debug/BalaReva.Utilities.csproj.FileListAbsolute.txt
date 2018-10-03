@@ -1,0 +1,5 @@
+C:\TestProject\UiPath Publishment\BalaReva.Utilities\bin\Debug\BalaReva.Utilities.dll
+C:\TestProject\UiPath Publishment\BalaReva.Utilities\bin\Debug\BalaReva.Utilities.pdb
+C:\TestProject\UiPath Publishment\BalaReva.Utilities\obj\Debug\BalaReva.Utilities.dll
+C:\TestProject\UiPath Publishment\BalaReva.Utilities\obj\Debug\BalaReva.Utilities.pdb
+C:\TestProject\UiPath Publishment\BalaReva.Utilities\obj\Debug\BalaReva.Utilities.csprojResolveAssemblyReference.cache
