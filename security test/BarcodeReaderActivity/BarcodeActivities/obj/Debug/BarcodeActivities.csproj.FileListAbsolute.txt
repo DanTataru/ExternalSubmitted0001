@@ -1,0 +1,9 @@
+c:\users\na00434518\documents\visual studio 2013\Projects\BarcodeActivities\BarcodeActivities\bin\Debug\BarcodeActivities.dll
+c:\users\na00434518\documents\visual studio 2013\Projects\BarcodeActivities\BarcodeActivities\bin\Debug\BarcodeActivities.pdb
+c:\users\na00434518\documents\visual studio 2013\Projects\BarcodeActivities\BarcodeActivities\bin\Debug\MessagingToolkit.Barcode.dll
+c:\users\na00434518\documents\visual studio 2013\Projects\BarcodeActivities\BarcodeActivities\bin\Debug\Spire.Barcode.dll
+c:\users\na00434518\documents\visual studio 2013\Projects\BarcodeActivities\BarcodeActivities\bin\Debug\Spire.License.dll
+c:\users\na00434518\documents\visual studio 2013\Projects\BarcodeActivities\BarcodeActivities\bin\Debug\Spire.Barcode.xml
+c:\users\na00434518\documents\visual studio 2013\Projects\BarcodeActivities\BarcodeActivities\bin\Debug\Spire.License.xml
+c:\users\na00434518\documents\visual studio 2013\Projects\BarcodeActivities\BarcodeActivities\obj\Debug\BarcodeActivities.dll
+c:\users\na00434518\documents\visual studio 2013\Projects\BarcodeActivities\BarcodeActivities\obj\Debug\BarcodeActivities.pdb
